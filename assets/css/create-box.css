@@ -145,12 +145,20 @@
     flex-direction: column;
     gap: 0.75rem;
 }
-
+.create-box__selected-item.create-box__selected-item--box{
+    flex-direction: row;
+}
 .create-box__selected-item {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    align-items: start;
+    gap: 5px;
+}
+
+.create-box__selected-item:not(.create-box__selected-item--box){
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
 }
 
 .create-box__selected-info {
@@ -163,17 +171,22 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    justify-content: space-between;
 }
 
 .create-box__selected-control {
     width: 32px;
     height: 32px;
-    border-radius: 999px;
+    border-radius: 4px;
     border: 1px solid #444;
     background: #fff;
     cursor: pointer;
     font-size: 1rem;
     line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
 .create-box__selected-remove {

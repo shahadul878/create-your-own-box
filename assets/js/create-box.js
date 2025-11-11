@@ -478,17 +478,28 @@
         if ( state.box ) {
             const li = document.createElement( 'li' );
             li.className = 'create-box__selected-item create-box__selected-item--box';
-            li.innerHTML = `
-                <div class="create-box__selected-info">
-                    <strong>${ state.box.name }</strong>
-                    <span>${ i18n.box_label || 'Box' }</span>
-                </div>
-                <div class="create-box__selected-actions">
-                    <span class="create-box__selected-qty">1</span>
-                    <span class="create-box__selected-price">${ state.box.priceHtml || formatMoney( state.box.price ) }</span>
-                    <button type="button" class="create-box__selected-remove" data-remove-box>&times;</button>
-                </div>
-            `;
+        const info = document.createElement( 'div' );
+        info.className = 'create-box__selected-info';
+
+        const name = document.createElement( 'strong' );
+        name.textContent = state.box.name;
+
+        info.appendChild( name );
+
+        const actions = document.createElement( 'div' );
+        actions.className = 'create-box__selected-actions';
+
+        const removeBox = document.createElement( 'button' );
+        removeBox.type = 'button';
+        removeBox.className = 'create-box__selected-remove';
+        removeBox.dataset.removeBox = '1';
+        removeBox.setAttribute( 'aria-label', i18n.remove || 'Remove' );
+        removeBox.textContent = '×';
+
+        actions.appendChild( removeBox );
+
+        li.appendChild( info );
+        li.appendChild( actions );
 
             elements.selectedList.appendChild( li );
         }
@@ -500,10 +511,15 @@
 
             const info = document.createElement( 'div' );
             info.className = 'create-box__selected-info';
-            info.innerHTML = `<strong>${ entry.name }</strong>`;
+
+        const name = document.createElement( 'strong' );
+        name.textContent = entry.name;
+        info.appendChild( name );
+
             if ( entry.optionLabel ) {
                 const variant = document.createElement( 'span' );
-                variant.textContent = entry.optionLabel;
+            variant.className = 'create-box__selected-meta';
+            variant.textContent = entry.optionLabel;
                 info.appendChild( variant );
             }
 
@@ -526,10 +542,6 @@
             increase.dataset.action = 'increase';
             increase.textContent = '+';
 
-            const price = document.createElement( 'span' );
-            price.className = 'create-box__selected-price';
-            price.textContent = formatMoney( entry.price * entry.quantity );
-
             const remove = document.createElement( 'button' );
             remove.type = 'button';
             remove.className = 'create-box__selected-remove';
@@ -539,7 +551,6 @@
             actions.appendChild( decrease );
             actions.appendChild( qty );
             actions.appendChild( increase );
-            actions.appendChild( price );
             actions.appendChild( remove );
 
             li.appendChild( info );
@@ -641,7 +652,13 @@
         if ( removeBox ) {
             state.box = null;
             const cards = elements.boxGrid ? elements.boxGrid.querySelectorAll( '.create-box-card' ) : [];
-            cards.forEach( ( card ) => card.classList.remove( 'is-selected' ) );
+            cards.forEach( ( card ) => {
+                card.classList.remove( 'is-selected' );
+                const button = card.querySelector( '[data-box-select]' );
+                if ( button ) {
+                    button.textContent = i18n.select_box || 'Select Box';
+                }
+            } );
             updateSummary();
             return;
         }
