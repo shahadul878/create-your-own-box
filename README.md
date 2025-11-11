@@ -59,3 +59,10 @@ The plugin ships without a build step; edits to JS/CSS are referenced directly.
 
 Released under the GPL v2 or later. See [LICENSE](LICENSE) if supplied, otherwise inherit WordPress.org plugin guidelines.
 
+## Contact
+
+- Author: H M Shahadul Islam  
+- Email: [shahadul.islam1@gmail.com](mailto:shahadul.islam1@gmail.com)  
+- Company: Codereyes  
+- GitHub: [@shahadul878](https://github.com/shahadul878)
+
