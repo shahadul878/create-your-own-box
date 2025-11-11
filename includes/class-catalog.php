@@ -65,8 +65,6 @@ class Catalog {
                 'select_variation'  => __( 'Select an option', 'create-box' ),
                 'quantity'          => __( 'Quantity', 'create-box' ),
                 'remove'            => __( 'Remove', 'create-box' ),
-                'unit_price'        => __( 'Unit price:', 'create-box' ),
-                'subtotal'          => __( 'Subtotal:', 'create-box' ),
                 'items_needed'      => __( 'Your bundle needs at least %d more item(s).', 'create-box' ),
                 'box_required'      => __( 'Add a required single product from the box collection to proceed.', 'create-box' ),
                 'total_required'    => __( 'Your total amount needs to be at least %s to proceed.', 'create-box' ),

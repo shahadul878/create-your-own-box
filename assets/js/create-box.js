@@ -478,28 +478,29 @@
         if ( state.box ) {
             const li = document.createElement( 'li' );
             li.className = 'create-box__selected-item create-box__selected-item--box';
-        const info = document.createElement( 'div' );
-        info.className = 'create-box__selected-info';
 
-        const name = document.createElement( 'strong' );
-        name.textContent = state.box.name;
+            const info = document.createElement( 'div' );
+            info.className = 'create-box__selected-info';
 
-        info.appendChild( name );
+            const name = document.createElement( 'strong' );
+            name.textContent = state.box.name;
 
-        const actions = document.createElement( 'div' );
-        actions.className = 'create-box__selected-actions';
+            info.appendChild( name );
 
-        const removeBox = document.createElement( 'button' );
-        removeBox.type = 'button';
-        removeBox.className = 'create-box__selected-remove';
-        removeBox.dataset.removeBox = '1';
-        removeBox.setAttribute( 'aria-label', i18n.remove || 'Remove' );
-        removeBox.textContent = '×';
+            const actions = document.createElement( 'div' );
+            actions.className = 'create-box__selected-actions';
 
-        actions.appendChild( removeBox );
+            const removeBox = document.createElement( 'button' );
+            removeBox.type = 'button';
+            removeBox.className = 'create-box__selected-remove';
+            removeBox.dataset.removeBox = '1';
+            removeBox.setAttribute( 'aria-label', i18n.remove || 'Remove' );
+            removeBox.textContent = '×';
 
-        li.appendChild( info );
-        li.appendChild( actions );
+            actions.appendChild( removeBox );
+
+            li.appendChild( info );
+            li.appendChild( actions );
 
             elements.selectedList.appendChild( li );
         }
@@ -512,14 +513,14 @@
             const info = document.createElement( 'div' );
             info.className = 'create-box__selected-info';
 
-        const name = document.createElement( 'strong' );
-        name.textContent = entry.name;
-        info.appendChild( name );
+            const name = document.createElement( 'strong' );
+            name.textContent = entry.name;
+            info.appendChild( name );
 
             if ( entry.optionLabel ) {
                 const variant = document.createElement( 'span' );
-            variant.className = 'create-box__selected-meta';
-            variant.textContent = entry.optionLabel;
+                variant.className = 'create-box__selected-meta';
+                variant.textContent = entry.optionLabel;
                 info.appendChild( variant );
             }
 
@@ -548,9 +549,13 @@
             remove.dataset.action = 'remove';
             remove.textContent = '×';
 
-            actions.appendChild( decrease );
-            actions.appendChild( qty );
-            actions.appendChild( increase );
+            const quantityGroup = document.createElement( 'div' );
+            quantityGroup.className = 'create-box__selected-quantity';
+            quantityGroup.appendChild( decrease );
+            quantityGroup.appendChild( qty );
+            quantityGroup.appendChild( increase );
+
+            actions.appendChild( quantityGroup );
             actions.appendChild( remove );
 
             li.appendChild( info );
