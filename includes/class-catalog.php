@@ -22,13 +22,14 @@ class Catalog {
      * @return array
      */
     public static function build_payload() {
+        $charset  = get_bloginfo( 'charset' );
         $currency = array(
             'code'              => get_woocommerce_currency(),
-            'symbol'            => get_woocommerce_currency_symbol(),
+            'symbol'            => html_entity_decode( get_woocommerce_currency_symbol(), ENT_QUOTES, $charset ? $charset : 'UTF-8' ),
             'decimals'          => wc_get_price_decimals(),
             'decimalSeparator'  => wc_get_price_decimal_separator(),
             'thousandSeparator' => wc_get_price_thousand_separator(),
-            'format'            => get_woocommerce_price_format(),
+            'format'            => html_entity_decode( get_woocommerce_price_format(), ENT_QUOTES, $charset ? $charset : 'UTF-8' ),
         );
 
         $boxes       = self::collect_box_products();
